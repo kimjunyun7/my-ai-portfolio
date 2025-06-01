@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { Grid3x3, List, Circle, Search } from 'lucide-react';
+import { Grid, List, Circle, Search } from 'lucide-react';
 
 export default function Home() {
   const [viewMode, setViewMode] = useState('grid');
@@ -113,7 +113,7 @@ export default function Home() {
               }`}
               title="Grid View"
             >
-              <Grid3x3 className="w-5 h-5" />
+              <Grid className="w-5 h-5" />
             </button>
             <button
               onClick={() => setViewMode('list')}
