@@ -1,8 +1,7 @@
-'use client';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Grid3x3, List, Circle, Search } from 'lucide-react';
 
-export default function Home() {
+const App = () => {
   const [viewMode, setViewMode] = useState('grid');
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -13,6 +12,7 @@ export default function Home() {
     { id: 3, name: 'Gamma Analytics', active: false, color: 'from-orange-500 to-red-600' },
     { id: 4, name: 'Delta Commerce', active: false, color: 'from-pink-500 to-rose-600' },
     { id: 5, name: 'Epsilon Tools', active: false, color: 'from-indigo-500 to-blue-600' },
+    // Add more projects as needed...
   ];
 
   const filteredProjects = projects.filter(project =>
@@ -21,6 +21,7 @@ export default function Home() {
 
   const handleProjectClick = (project) => {
     if (project.active) {
+      // Navigate to project - in real app, use Next.js router
       console.log(`Navigating to ${project.name}`);
     }
   };
@@ -79,7 +80,7 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white p-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 animate-fade-in">
           <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
             AI-Crafted Web Portfolio
           </h1>
@@ -139,6 +140,7 @@ export default function Home() {
           ${viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6' : ''}
           ${viewMode === 'list' ? 'flex flex-col gap-4' : ''}
           ${viewMode === 'bubble' ? 'flex flex-wrap gap-6 justify-center' : ''}
+          animate-fade-in
         `}>
           {filteredProjects.map((project) => (
             <ProjectButton key={project.id} project={project} />
@@ -152,6 +154,25 @@ export default function Home() {
           </p>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-fade-in {
+          animation: fade-in 0.6s ease-out;
+        }
+      `}</style>
     </div>
   );
-}
+};
+
+export default App;
