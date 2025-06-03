@@ -1,3 +1,4 @@
+'use client';
 import { useState } from 'react';
 import { Grid, List, Circle, Search } from 'lucide-react';
 
